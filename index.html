@@ -6,7 +6,7 @@
     <title>Mes Réseaux</title>
     <style>
         :root {
-            /* Palette Violette */
+            /* Palette Violette Globale */
             --bg-light-violet: #e1ccff;
             --bg-dark-violet: #4a148c;
             --container-bg: rgba(255, 255, 255, 0.03);
@@ -24,7 +24,6 @@
         }
 
         body {
-            /* Fond dégradé violet à violet foncé */
             background: linear-gradient(135deg, var(--bg-light-violet) 0%, var(--bg-dark-violet) 100%);
             color: var(--text-main);
             display: flex;
@@ -36,7 +35,7 @@
             padding: 20px 0;
         }
 
-        /* Arrière-plan animé (Blobs) - mis à jour en violet/magenta */
+        /* Arrière-plan animé */
         .blobs {
             position: fixed;
             top: 0;
@@ -189,92 +188,130 @@
             border-color: var(--neon-magenta);
         }
 
-        /* Formulaire Uiverse - Design de base */
+        /* --- Nouveau Formulaire --- */
         .card {
             width: 100%;
-            background-color: #e8e9eb;
-            border-radius: 30px;
-            box-shadow: inset 0px 35px 25px #ffffffe0, inset 10px 0px 25px #0000004b,
-                        inset 40px 0px 20px #ffffff, inset -10px 0px 25px #0000004b,
-                        inset -40px 0px 20px #fff, inset 0px 10px 10px #000000e0,
-                        inset 0px -15px 25px #00000036, 10px 25px 40px -10px #00000060;
-            position: relative;
-            padding: 25px;
+            min-height: 20rem;
+            background-color: #4158D0;
+            background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+            border-top-left-radius: 2rem;
+            border-bottom-right-radius: 2rem;
+            padding: 2rem 1.5rem;
+            box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+            transition: 0.5s ease-in-out;
             display: flex;
             flex-direction: column;
             gap: 15px;
             box-sizing: border-box;
+            border: none;
         }
 
         .heading {
-            color: #444;
+            text-align: center;
             font-weight: 800;
             font-size: 1.2rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 5px;
+            color: black;
+            margin-bottom: 10px;
         }
 
         .input-div {
+            display: flex;
             width: 100%;
+            transition: 0.5s ease-in-out;
         }
 
-        .input, select.input {
-            width: 100%;
-            padding: 12px;
+        .card input, 
+        .card select, 
+        .card textarea {
+            background-color: transparent;
             border: none;
-            border-radius: 10px;
-            background: #f0f0f0;
-            box-shadow: inset 3px 3px 6px #c8c8c8, inset -3px -3px 6px #ffffff;
-            color: #333;
+            border-bottom: 1px solid black;
+            width: 100%;
+            padding: 10px 8px;
             outline: none;
-            font-size: 0.9rem;
-            transition: all 0.2s ease;
-            appearance: none; 
+            color: black;
+            font-size: 0.95rem;
+            font-weight: 600;
         }
 
-        select.input {
-            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23333333%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+        /* Customisation de la flèche du menu déroulant */
+        .card select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22black%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
             background-repeat: no-repeat;
-            background-position: right 12px top 50%;
+            background-position: right 8px top 50%;
             background-size: 12px auto;
             cursor: pointer;
         }
 
-        .input:focus, select.input:focus {
-            box-shadow: inset 4px 4px 8px #bebebe, inset -4px -4px 8px #ffffff;
+        /* Couleur de fond des options du menu pour la lisibilité */
+        .card select option {
+            background-color: #C850C0;
+            color: white;
+            font-weight: 600;
         }
 
-        textarea.input {
+        .card input::placeholder, 
+        .card textarea::placeholder {
+            color: rgba(0, 0, 0, 0.7);
+        }
+
+        .card textarea {
             resize: none;
-            height: 80px;
+            height: 60px;
+        }
+
+        .input:focus, .input:hover {
+            transition: 0.2s ease-in-out;
+            box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, 
+                        rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, 
+                        rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, 
+                        rgba(0, 0, 0, 0.06) 0px 2px 1px, 
+                        rgba(0, 0, 0, 0.09) 0px 4px 2px, 
+                        rgba(0, 0, 0, 0.09) 0px 8px 4px, 
+                        rgba(0, 0, 0, 0.09) 0px 16px 8px, 
+                        rgba(0, 0, 0, 0.09) 0px 32px 16px;
+        }
+
+        .button-div {
+            text-align: center;
+            width: 100%;
         }
 
         .submit {
+            margin-top: 1.5rem;
             width: 100%;
+            text-align: center;
             padding: 12px;
             border: none;
-            border-radius: 10px;
-            background: linear-gradient(145deg, #f8f9fb, #d1d2d4);
-            box-shadow: 4px 4px 8px #bebebe, -4px -4px 8px #ffffff;
-            color: #444;
-            font-weight: 800;
-            cursor: pointer;
+            border-top-left-radius: 1rem;
+            border-bottom-right-radius: 1rem;
+            background-color: black;
+            color: white;
+            font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 1px;
-            transition: all 0.2s ease;
+            transition: 0.5s ease-in-out;
+            cursor: pointer;
         }
 
-        .submit:active {
-            box-shadow: inset 4px 4px 8px #bebebe, inset -4px -4px 8px #ffffff;
+        .submit:hover {
+            box-shadow: rgba(44, 43, 43, 0.664) 5px 5px, 
+                        rgba(45, 45, 45, 0.3) 10px 10px, 
+                        rgba(60, 59, 59, 0.2) 15px 15px, 
+                        rgba(54, 53, 53, 0.1) 20px 20px, 
+                        rgba(240, 46, 170, 0.05) 25px 25px;
         }
 
         .status-message {
-            color: #444;
-            font-size: 0.8rem;
-            font-weight: bold;
+            color: black;
+            font-size: 0.85rem;
+            font-weight: 800;
             display: none;
             margin-top: 10px;
+            text-align: center;
         }
 
         /* Footer */
@@ -332,10 +369,8 @@
                     <option value="Snapchat">Snapchat</option>
                     <option value="Facebook">Facebook</option>
                     <option value="WhatsApp">WhatsApp</option>
-                    <option value="Messenger">Messenger</option>
                     <option value="Numéro de téléphone">Numéro de téléphone</option>
                     <option value="Adresse mail">Adresse mail</option>
-                    <option value="Telegram">Telegram</option>
                     <option value="Discord">Discord</option>
                     <option value="Autre">Autre</option>
                 </select>
@@ -358,18 +393,14 @@
 
         <footer class="footer">
             <p>Site créé et publié par itsmto</p>
-            <p class="copyright">&copy; <span id="year">2026</span></p>
+            <p class="copyright">&copy; <span>2026</span></p>
         </footer>
     </div>
 
     <script>
-        // L'année est fixée à 2026 dans le HTML, pas de mise à jour nécessaire
-        // document.getElementById('year').textContent = new Date().getFullYear();
-
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault(); 
 
-            // Ton Webhook Discord
             const webhookUrl = 'https://discord.com/api/webhooks/1483393535892918356/L8higA1eqTBG1GvgKa_LUI55tMNB8Ude-nyQ1mqXC0bpJz6jPlGA4lIjb9phM3AUm_p0';
             
             const network = document.getElementById('network').value;
@@ -381,7 +412,7 @@
                 content: "Nouveau message depuis ton site !",
                 embeds: [{
                     title: "Détails du contact direct",
-                    color: 10177994, // Converti #9B4DCA (Néon Purple) en décimal
+                    color: 13127872, // Couleur magenta correspondant au milieu du dégradé
                     fields: [
                         { name: "Réseau Social / Moyen", value: network, inline: true },
                         { name: "Pseudo / Coordonnées", value: pseudo, inline: true },
@@ -392,7 +423,7 @@
             };
 
             statusText.style.display = 'block';
-            statusText.style.color = '#444';
+            statusText.style.color = 'black';
             statusText.textContent = "Envoi en cours...";
 
             fetch(webhookUrl, {
@@ -404,7 +435,6 @@
             })
             .then(response => {
                 if (response.ok) {
-                    statusText.style.color = '#00a86b';
                     statusText.textContent = "Message envoyé avec succès !";
                     document.getElementById('contactForm').reset();
                 } else {
@@ -413,7 +443,7 @@
             })
             .catch(error => {
                 console.error('Erreur:', error);
-                statusText.style.color = '#e4405f';
+                statusText.style.color = '#fff';
                 statusText.textContent = "Erreur lors de l'envoi du message.";
             });
         });
