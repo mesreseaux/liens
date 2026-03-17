@@ -3,129 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mathéo | Liens</title>
+    <title>Mathéo | Mes Réseaux</title>
     <style>
         :root {
-            --bg: #050505;
-            --glass: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --accent-tiktok: #00f2ea;
-            --accent-insta: #ff0050;
-            --text: #ffffff;
-            --font: 'Inter', system-ui, -apple-system, sans-serif;
+            --bg-dark: #0d0d1a;
+            --text-main: #ffffff;
+            --neon-blue: #00ffff;
+            --neon-pink: #ff007f;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --accent-tiktok: #010101; /* TikTok Black */
+            --accent-insta: #e4405f; /* Instagram Pink/Red */
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
         body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: var(--font);
+            background-color: var(--bg-dark);
+            color: var(--text-main);
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            height: 100vh;
             overflow: hidden;
             position: relative;
         }
 
-        /* Background dégradé animé */
-        .bg-animate {
+        /* Arrière-plan animé (Blobs) */
+        .blobs {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #050505 100%);
+            filter: blur(120px);
+            opacity: 0.6;
         }
 
         .blob {
             position: absolute;
+            border-radius: 50%;
+            animation: move-blobs 20s infinite ease-in-out;
+        }
+
+        .blob-blue {
             width: 500px;
             height: 500px;
-            background: linear-gradient(45deg, var(--accent-tiktok), var(--accent-insta));
-            filter: blur(80px);
-            border-radius: 50%;
-            opacity: 0.15;
-            animation: move 20s infinite alternate;
+            background: radial-gradient(circle, var(--neon-blue) 0%, transparent 70%);
+            top: -150px;
+            left: -150px;
         }
 
-        @keyframes move {
-            from { transform: translate(-20%, -20%) rotate(0deg); }
-            to { transform: translate(20%, 20%) rotate(360deg); }
+        .blob-pink {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--neon-pink) 0%, transparent 70%);
+            bottom: -200px;
+            right: -200px;
+            animation-delay: -7s;
         }
 
-        /* Container Principal */
+        @keyframes move-blobs {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(80px, 50px) scale(1.1); }
+        }
+
+        /* Conteneur principal */
         .container {
             width: 90%;
-            max-width: 450px;
+            max-width: 380px;
             text-align: center;
-            z-index: 1;
+            backdrop-filter: blur(15px);
+            background-color: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+            animation: fadeIn 1s ease-out;
+            position: relative;
         }
 
-        header {
-            margin-bottom: 2rem;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Photo de profil */
         .profile-pic {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(45deg, var(--accent-tiktok), var(--accent-insta));
+            width: 110px;
+            height: 110px;
             border-radius: 50%;
-            margin: 0 auto 1.5rem;
-            padding: 3px;
-            box-shadow: 0 0 30px rgba(255, 0, 80, 0.2);
+            overflow: hidden;
+            margin: 0 auto 20px;
+            border: 4px solid transparent;
+            /* Border gradient effect for circular picture */
+            background: linear-gradient(var(--bg-dark), var(--bg-dark)) padding-box,
+                        linear-gradient(to bottom right, var(--neon-blue), var(--neon-pink)) border-box;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2), 0 0 20px rgba(255, 0, 127, 0.2);
         }
 
         .profile-pic img {
             width: 100%;
             height: 100%;
-            border-radius: 50%;
             object-fit: cover;
-            border: 4px solid var(--bg);
+            border-radius: 50%;
         }
 
         h1 {
-            font-size: 1.5rem;
             font-weight: 800;
-            letter-spacing: -0.5px;
-            margin-bottom: 0.5rem;
+            font-size: 1.6rem;
+            letter-spacing: -1px;
+            margin-bottom: 5px;
         }
 
         .handle {
-            font-family: 'JetBrains Mono', monospace;
+            color: rgba(255, 255, 255, 0.6);
             font-size: 0.9rem;
-            opacity: 0.6;
-            margin-bottom: 2rem;
+            margin-bottom: 30px;
         }
 
-        /* Boutons de réseaux */
+        /* Liens */
         .links-wrapper {
             display: flex;
             flex-direction: column;
-            gap: 1.2rem;
+            gap: 15px;
         }
 
         .link-card {
-            position: relative;
-            padding: 1.2rem;
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            text-decoration: none;
-            color: var(--text);
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            backdrop-filter: blur(10px);
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 18px;
+            background-color: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
             overflow: hidden;
         }
 
@@ -136,47 +160,74 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-            transition: 0.5s;
-        }
-
-        .link-card:hover {
-            transform: scale(1.03);
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s ease;
         }
 
         .link-card:hover::before {
             left: 100%;
         }
 
-        .tiktok:hover {
-            box-shadow: 0 0 20px rgba(0, 242, 234, 0.3);
-            color: var(--accent-tiktok);
+        .link-card:hover {
+            transform: scale(1.05);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
         }
 
-        .instagram:hover {
-            box-shadow: 0 0 20px rgba(255, 0, 80, 0.3);
-            color: var(--accent-insta);
+        /* Icônes de marque */
+        .link-card svg {
+            width: 22px;
+            height: 22px;
+            margin-right: 15px;
+            fill: var(--text-main);
+            transition: fill 0.3s ease, transform 0.3s ease;
         }
 
-        footer {
-            margin-top: 3rem;
+        .link-card:hover svg {
+            fill: currentColor;
+            transform: rotate(-10deg);
+        }
+
+        /* Styles hover spécifiques pour TikTok/Insta */
+        .link-card.tiktok:hover {
+            color: var(--neon-blue);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+            border-color: var(--neon-blue);
+        }
+
+        .link-card.instagram:hover {
+            color: var(--neon-pink);
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.3);
+            border-color: var(--neon-pink);
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 40px;
             font-size: 0.8rem;
-            opacity: 0.4;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer p {
+            margin-bottom: 5px;
+        }
+
+        .footer .copyright {
+            font-family: 'JetBrains Mono', monospace;
             letter-spacing: 1px;
         }
     </style>
 </head>
 <body>
-    <div class="bg-animate"></div>
-    <div class="blob"></div>
+    <div class="blobs">
+        <div class="blob blob-blue"></div>
+        <div class="blob blob-pink"></div>
+    </div>
 
     <div class="container">
         <header>
             <div class="profile-pic">
-                <div style="width:100%; height:100%; background: #111; border-radius: 50%;"></div>
+                <img src="1.jpeg" alt="Mathéo Profile Picture">
             </div>
             <h1>MATHÉO</h1>
             <p class="handle">@matheoreseaux</p>
@@ -184,19 +235,28 @@
 
         <div class="links-wrapper">
             <a href="https://www.tiktok.com/@itsmto_" class="link-card tiktok" target="_blank">
+                <svg viewBox="0 0 448 512">
+                    <path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a73.32,73.32,0,1,0,72.27,73.31V0h90.41a108.94,108.94,0,0,0,10.88,47.31,107.59,107.59,0,0,0,72.77,72.77A108.91,108.91,0,0,0,448,131.13Z"/>
+                </svg>
                 TIKTOK
             </a>
             <a href="https://www.instagram.com/mathe.ig" class="link-card instagram" target="_blank">
+                <svg viewBox="0 0 448 512">
+                    <path d="M224,202.66A51.34,51.34,0,1,0,275.34,254,51.35,51.35,0,0,0,224,202.66Zm127.13-1.07V306.41c0,36.17-29.3,65.47-65.47,65.47H162.34C126.17,371.88,96.87,342.58,96.87,306.41V201.59c0-36.17,29.3-65.47,65.47-65.47h123.32C321.83,136.12,351.13,165.42,351.13,201.59Zm-127.13,99.8c31.17,0,56.45-25.28,56.45-56.45S255.17,188.49,224,188.49,167.55,213.77,167.55,244.94,192.83,301.39,224,301.39ZM448,109.92a109.92,109.92,0,0,0-109.92-109.92H109.92A109.92,109.92,0,0,0,0,109.92V402.08A109.92,109.92,0,0,0,109.92,512H338.08A109.92,109.92,0,0,0,448,402.08V109.92ZM381.16,368c0,21.36-17.3,38.66-38.66,38.66H105.5c-21.36,0-38.66-17.3-38.66-38.66V144c0-21.36,17.3-38.66,38.66-38.66h237c21.36,0,38.66,17.3,38.66,38.66Zm-241.07-224a13.4,13.4,0,1,1,13.4,13.4A13.4,13.4,0,0,1,140.09,144Z"/>
+                </svg>
                 INSTAGRAM
-            </a>
-            <a href="https://github.com/matheoreseaux/liens" class="link-card" target="_blank" style="font-size: 0.8rem; opacity: 0.7;">
-                SOURCE CODE
             </a>
         </div>
 
-        <footer>
-            PRODUCED BY MTO
+        <footer class="footer">
+            <p>Site créé et publié par itsmto</p>
+            <p class="copyright">&copy; <span id="year"></span></p>
         </footer>
     </div>
+
+    <script>
+        // Mettre à jour l'année dynamiquement (une petite touche pour le C entouré)
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
