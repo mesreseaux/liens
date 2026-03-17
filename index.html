@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mathéo | Mes Réseaux</title>
+    <title>Mes Réseaux</title>
     <style>
         :root {
             --bg-dark: #0d0d1a;
@@ -12,8 +12,6 @@
             --neon-pink: #ff007f;
             --glass-bg: rgba(255, 255, 255, 0.05);
             --glass-border: rgba(255, 255, 255, 0.08);
-            --accent-tiktok: #010101; /* TikTok Black */
-            --accent-insta: #e4405f; /* Instagram Pink/Red */
         }
 
         * {
@@ -29,14 +27,15 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            overflow: hidden;
+            min-height: 100vh;
+            overflow-x: hidden;
             position: relative;
+            padding: 20px 0;
         }
 
         /* Arrière-plan animé (Blobs) */
         .blobs {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -87,6 +86,7 @@
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
             animation: fadeIn 1s ease-out;
             position: relative;
+            z-index: 1;
         }
 
         @keyframes fadeIn {
@@ -100,9 +100,8 @@
             height: 110px;
             border-radius: 50%;
             overflow: hidden;
-            margin: 0 auto 20px;
+            margin: 0 auto 30px;
             border: 4px solid transparent;
-            /* Border gradient effect for circular picture */
             background: linear-gradient(var(--bg-dark), var(--bg-dark)) padding-box,
                         linear-gradient(to bottom right, var(--neon-blue), var(--neon-pink)) border-box;
             box-shadow: 0 0 20px rgba(0, 255, 255, 0.2), 0 0 20px rgba(255, 0, 127, 0.2);
@@ -115,24 +114,12 @@
             border-radius: 50%;
         }
 
-        h1 {
-            font-weight: 800;
-            font-size: 1.6rem;
-            letter-spacing: -1px;
-            margin-bottom: 5px;
-        }
-
-        .handle {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.9rem;
-            margin-bottom: 30px;
-        }
-
         /* Liens */
         .links-wrapper {
             display: flex;
             flex-direction: column;
             gap: 15px;
+            margin-bottom: 40px;
         }
 
         .link-card {
@@ -174,7 +161,6 @@
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
         }
 
-        /* Icônes de marque */
         .link-card svg {
             width: 22px;
             height: 22px;
@@ -188,7 +174,6 @@
             transform: rotate(-10deg);
         }
 
-        /* Styles hover spécifiques pour TikTok/Insta */
         .link-card.tiktok:hover {
             color: var(--neon-blue);
             box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
@@ -199,6 +184,77 @@
             color: var(--neon-pink);
             box-shadow: 0 0 20px rgba(255, 0, 127, 0.3);
             border-color: var(--neon-pink);
+        }
+
+        /* --- Section Formulaire Uiverse --- */
+        .card {
+            width: 100%;
+            background-color: #e8e9eb;
+            border-radius: 30px;
+            box-shadow: inset 0px 35px 25px #ffffffe0, inset 10px 0px 25px #0000004b,
+                        inset 40px 0px 20px #ffffff, inset -10px 0px 25px #0000004b,
+                        inset -40px 0px 20px #fff, inset 0px 10px 10px #000000e0,
+                        inset 0px -15px 25px #00000036, 10px 25px 40px -10px #00000060;
+            position: relative;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            box-sizing: border-box;
+        }
+
+        .heading {
+            color: #444;
+            font-weight: 800;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .input-div {
+            width: 100%;
+        }
+
+        .input {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: #f0f0f0;
+            box-shadow: inset 3px 3px 6px #c8c8c8, inset -3px -3px 6px #ffffff;
+            color: #333;
+            outline: none;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+
+        .input:focus {
+            box-shadow: inset 4px 4px 8px #bebebe, inset -4px -4px 8px #ffffff;
+        }
+
+        textarea.input {
+            resize: none;
+            height: 80px;
+        }
+
+        .submit {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(145deg, #f8f9fb, #d1d2d4);
+            box-shadow: 4px 4px 8px #bebebe, -4px -4px 8px #ffffff;
+            color: #444;
+            font-weight: 800;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.2s ease;
+        }
+
+        .submit:active {
+            box-shadow: inset 4px 4px 8px #bebebe, inset -4px -4px 8px #ffffff;
         }
 
         /* Footer */
@@ -227,10 +283,8 @@
     <div class="container">
         <header>
             <div class="profile-pic">
-                <img src="1.jpeg" alt="Mathéo Profile Picture">
+                <img src="1.jpeg" alt="Profile Picture">
             </div>
-            <h1>MATHÉO</h1>
-            <p class="handle">@matheoreseaux</p>
         </header>
 
         <div class="links-wrapper">
@@ -248,6 +302,26 @@
             </a>
         </div>
 
+        <form class="card" action="TON_LIEN_FORMSPREE" method="POST">
+            <p class="heading">Me contacter</p>
+            
+            <div class="input-div">
+                <input type="email" name="email" class="input" placeholder="Email" required>
+            </div>
+            
+            <div class="input-div">
+                <input type="text" name="phone" class="input" placeholder="Phone">
+            </div>
+            
+            <div class="input-div">
+                <textarea name="message" class="input" placeholder="Message" required></textarea>
+            </div>
+            
+            <div class="button-div">
+                <button type="submit" class="submit">Submit</button>
+            </div>
+        </form>
+
         <footer class="footer">
             <p>Site créé et publié par itsmto</p>
             <p class="copyright">&copy; <span id="year"></span></p>
@@ -255,7 +329,6 @@
     </div>
 
     <script>
-        // Mettre à jour l'année dynamiquement (une petite touche pour le C entouré)
         document.getElementById('year').textContent = new Date().getFullYear();
     </script>
 </body>
