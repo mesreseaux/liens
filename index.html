@@ -6,11 +6,13 @@
     <title>Mes Réseaux</title>
     <style>
         :root {
-            --bg-dark: #0d0d1a;
+            /* Palette Violette */
+            --bg-light-violet: #e1ccff;
+            --bg-dark-violet: #4a148c;
+            --container-bg: rgba(255, 255, 255, 0.03);
             --text-main: #ffffff;
-            --neon-blue: #00ffff;
-            --neon-pink: #ff007f;
-            --glass-bg: rgba(255, 255, 255, 0.05);
+            --neon-purple: #9b4dca;
+            --neon-magenta: #e4405f;
             --glass-border: rgba(255, 255, 255, 0.08);
         }
 
@@ -22,7 +24,8 @@
         }
 
         body {
-            background-color: var(--bg-dark);
+            /* Fond dégradé violet à violet foncé */
+            background: linear-gradient(135deg, var(--bg-light-violet) 0%, var(--bg-dark-violet) 100%);
             color: var(--text-main);
             display: flex;
             justify-content: center;
@@ -33,7 +36,7 @@
             padding: 20px 0;
         }
 
-        /* Arrière-plan animé (Blobs) */
+        /* Arrière-plan animé (Blobs) - mis à jour en violet/magenta */
         .blobs {
             position: fixed;
             top: 0;
@@ -51,18 +54,18 @@
             animation: move-blobs 20s infinite ease-in-out;
         }
 
-        .blob-blue {
+        .blob-purple {
             width: 500px;
             height: 500px;
-            background: radial-gradient(circle, var(--neon-blue) 0%, transparent 70%);
+            background: radial-gradient(circle, var(--neon-purple) 0%, transparent 70%);
             top: -150px;
             left: -150px;
         }
 
-        .blob-pink {
+        .blob-magenta {
             width: 600px;
             height: 600px;
-            background: radial-gradient(circle, var(--neon-pink) 0%, transparent 70%);
+            background: radial-gradient(circle, var(--neon-magenta) 0%, transparent 70%);
             bottom: -200px;
             right: -200px;
             animation-delay: -7s;
@@ -79,7 +82,7 @@
             max-width: 380px;
             text-align: center;
             backdrop-filter: blur(15px);
-            background-color: var(--glass-bg);
+            background-color: var(--container-bg);
             border: 1px solid var(--glass-border);
             padding: 40px;
             border-radius: 20px;
@@ -102,9 +105,9 @@
             overflow: hidden;
             margin: 0 auto 30px;
             border: 4px solid transparent;
-            background: linear-gradient(var(--bg-dark), var(--bg-dark)) padding-box,
-                        linear-gradient(to bottom right, var(--neon-blue), var(--neon-pink)) border-box;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2), 0 0 20px rgba(255, 0, 127, 0.2);
+            background: linear-gradient(var(--bg-dark-violet), var(--bg-dark-violet)) padding-box,
+                        linear-gradient(to bottom right, var(--neon-purple), var(--neon-magenta)) border-box;
+            box-shadow: 0 0 20px rgba(155, 77, 202, 0.2), 0 0 20px rgba(228, 64, 95, 0.2);
         }
 
         .profile-pic img {
@@ -127,7 +130,7 @@
             align-items: center;
             justify-content: center;
             padding: 18px;
-            background-color: var(--glass-bg);
+            background-color: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--glass-border);
             border-radius: 12px;
             text-decoration: none;
@@ -175,18 +178,18 @@
         }
 
         .link-card.tiktok:hover {
-            color: var(--neon-blue);
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
-            border-color: var(--neon-blue);
+            color: var(--neon-purple);
+            box-shadow: 0 0 20px rgba(155, 77, 202, 0.3);
+            border-color: var(--neon-purple);
         }
 
         .link-card.instagram:hover {
-            color: var(--neon-pink);
-            box-shadow: 0 0 20px rgba(255, 0, 127, 0.3);
-            border-color: var(--neon-pink);
+            color: var(--neon-magenta);
+            box-shadow: 0 0 20px rgba(228, 64, 95, 0.3);
+            border-color: var(--neon-magenta);
         }
 
-        /* Formulaire Uiverse */
+        /* Formulaire Uiverse - Design de base */
         .card {
             width: 100%;
             background-color: #e8e9eb;
@@ -227,10 +230,9 @@
             outline: none;
             font-size: 0.9rem;
             transition: all 0.2s ease;
-            appearance: none; /* Pour un style uniforme du menu déroulant */
+            appearance: none; 
         }
 
-        /* Ajouter une flèche personnalisée pour le select */
         select.input {
             background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23333333%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
             background-repeat: no-repeat;
@@ -294,8 +296,8 @@
 </head>
 <body>
     <div class="blobs">
-        <div class="blob blob-blue"></div>
-        <div class="blob blob-pink"></div>
+        <div class="blob blob-purple"></div>
+        <div class="blob blob-magenta"></div>
     </div>
 
     <div class="container">
@@ -326,26 +328,21 @@
             <div class="input-div">
                 <select id="network" class="input" required>
                     <option value="" disabled selected>Choisis un réseau</option>
-                    <option value="YouTube">YouTube</option>
+                    <option value="Instagram">Instagram</option>
+                    <option value="Snapchat">Snapchat</option>
                     <option value="Facebook">Facebook</option>
                     <option value="WhatsApp">WhatsApp</option>
-                    <option value="Instagram">Instagram</option>
                     <option value="Messenger">Messenger</option>
-                    <option value="Snapchat">Snapchat</option>
-                    <option value="TikTok">TikTok</option>
-                    <option value="X (Twitter)">X (Twitter)</option>
-                    <option value="LinkedIn">LinkedIn</option>
-                    <option value="Pinterest">Pinterest</option>
-                    <option value="Twitch">Twitch</option>
-                    <option value="Discord">Discord</option>
+                    <option value="Numéro de téléphone">Numéro de téléphone</option>
+                    <option value="Adresse mail">Adresse mail</option>
                     <option value="Telegram">Telegram</option>
-                    <option value="Reddit">Reddit</option>
-                    <option value="BeReal">BeReal</option>
+                    <option value="Discord">Discord</option>
+                    <option value="Autre">Autre</option>
                 </select>
             </div>
             
             <div class="input-div">
-                <input type="text" id="pseudo" class="input" placeholder="Pseudo" required>
+                <input type="text" id="pseudo" class="input" placeholder="Pseudo / Coordonnées" required>
             </div>
             
             <div class="input-div">
@@ -361,16 +358,18 @@
 
         <footer class="footer">
             <p>Site créé et publié par itsmto</p>
-            <p class="copyright">&copy; <span id="year"></span></p>
+            <p class="copyright">&copy; <span id="year">2026</span></p>
         </footer>
     </div>
 
     <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
+        // L'année est fixée à 2026 dans le HTML, pas de mise à jour nécessaire
+        // document.getElementById('year').textContent = new Date().getFullYear();
 
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault(); 
 
+            // Ton Webhook Discord
             const webhookUrl = 'https://discord.com/api/webhooks/1483393535892918356/L8higA1eqTBG1GvgKa_LUI55tMNB8Ude-nyQ1mqXC0bpJz6jPlGA4lIjb9phM3AUm_p0';
             
             const network = document.getElementById('network').value;
@@ -381,11 +380,11 @@
             const payload = {
                 content: "Nouveau message depuis ton site !",
                 embeds: [{
-                    title: "Détails du contact",
-                    color: 16711807, 
+                    title: "Détails du contact direct",
+                    color: 10177994, // Converti #9B4DCA (Néon Purple) en décimal
                     fields: [
-                        { name: "Réseau Social", value: network, inline: true },
-                        { name: "Pseudo", value: pseudo, inline: true },
+                        { name: "Réseau Social / Moyen", value: network, inline: true },
+                        { name: "Pseudo / Coordonnées", value: pseudo, inline: true },
                         { name: "Message", value: message }
                     ],
                     timestamp: new Date().toISOString()
