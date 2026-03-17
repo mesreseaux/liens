@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathéo | Liens</title>
+    <style>
+        :root {
+            --bg: #050505;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --accent-tiktok: #00f2ea;
+            --accent-insta: #ff0050;
+            --text: #ffffff;
+            --font: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Background dégradé animé */
+        .bg-animate {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #050505 100%);
+        }
+
+        .blob {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(45deg, var(--accent-tiktok), var(--accent-insta));
+            filter: blur(80px);
+            border-radius: 50%;
+            opacity: 0.15;
+            animation: move 20s infinite alternate;
+        }
+
+        @keyframes move {
+            from { transform: translate(-20%, -20%) rotate(0deg); }
+            to { transform: translate(20%, 20%) rotate(360deg); }
+        }
+
+        /* Container Principal */
+        .container {
+            width: 90%;
+            max-width: 450px;
+            text-align: center;
+            z-index: 1;
+        }
+
+        header {
+            margin-bottom: 2rem;
+        }
+
+        .profile-pic {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(45deg, var(--accent-tiktok), var(--accent-insta));
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            padding: 3px;
+            box-shadow: 0 0 30px rgba(255, 0, 80, 0.2);
+        }
+
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--bg);
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .handle {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            opacity: 0.6;
+            margin-bottom: 2rem;
+        }
+
+        /* Boutons de réseaux */
+        .links-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .link-card {
+            position: relative;
+            padding: 1.2rem;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .link-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: 0.5s;
+        }
+
+        .link-card:hover {
+            transform: scale(1.03);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .link-card:hover::before {
+            left: 100%;
+        }
+
+        .tiktok:hover {
+            box-shadow: 0 0 20px rgba(0, 242, 234, 0.3);
+            color: var(--accent-tiktok);
+        }
+
+        .instagram:hover {
+            box-shadow: 0 0 20px rgba(255, 0, 80, 0.3);
+            color: var(--accent-insta);
+        }
+
+        footer {
+            margin-top: 3rem;
+            font-size: 0.8rem;
+            opacity: 0.4;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animate"></div>
+    <div class="blob"></div>
+
+    <div class="container">
+        <header>
+            <div class="profile-pic">
+                <div style="width:100%; height:100%; background: #111; border-radius: 50%;"></div>
+            </div>
+            <h1>MATHÉO</h1>
+            <p class="handle">@matheoreseaux</p>
+        </header>
+
+        <div class="links-wrapper">
+            <a href="https://www.tiktok.com/@itsmto_" class="link-card tiktok" target="_blank">
+                TIKTOK
+            </a>
+            <a href="https://www.instagram.com/mathe.ig" class="link-card instagram" target="_blank">
+                INSTAGRAM
+            </a>
+            <a href="https://github.com/matheoreseaux/liens" class="link-card" target="_blank" style="font-size: 0.8rem; opacity: 0.7;">
+                SOURCE CODE
+            </a>
+        </div>
+
+        <footer>
+            PRODUCED BY MTO
+        </footer>
+    </div>
+</body>
+</html>
