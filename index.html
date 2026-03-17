@@ -186,7 +186,7 @@
             border-color: var(--neon-pink);
         }
 
-        /* --- Section Formulaire Uiverse --- */
+        /* Formulaire Uiverse */
         .card {
             width: 100%;
             background-color: #e8e9eb;
@@ -216,7 +216,7 @@
             width: 100%;
         }
 
-        .input {
+        .input, select.input {
             width: 100%;
             padding: 12px;
             border: none;
@@ -227,9 +227,19 @@
             outline: none;
             font-size: 0.9rem;
             transition: all 0.2s ease;
+            appearance: none; /* Pour un style uniforme du menu déroulant */
         }
 
-        .input:focus {
+        /* Ajouter une flèche personnalisée pour le select */
+        select.input {
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23333333%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px top 50%;
+            background-size: 12px auto;
+            cursor: pointer;
+        }
+
+        .input:focus, select.input:focus {
             box-shadow: inset 4px 4px 8px #bebebe, inset -4px -4px 8px #ffffff;
         }
 
@@ -255,6 +265,14 @@
 
         .submit:active {
             box-shadow: inset 4px 4px 8px #bebebe, inset -4px -4px 8px #ffffff;
+        }
+
+        .status-message {
+            color: #444;
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: none;
+            margin-top: 10px;
         }
 
         /* Footer */
@@ -302,24 +320,43 @@
             </a>
         </div>
 
-        <form class="card" action="TON_LIEN_FORMSPREE" method="POST">
+        <form id="contactForm" class="card">
             <p class="heading">Me contacter</p>
             
             <div class="input-div">
-                <input type="email" name="email" class="input" placeholder="Email" required>
+                <select id="network" class="input" required>
+                    <option value="" disabled selected>Choisis un réseau</option>
+                    <option value="YouTube">YouTube</option>
+                    <option value="Facebook">Facebook</option>
+                    <option value="WhatsApp">WhatsApp</option>
+                    <option value="Instagram">Instagram</option>
+                    <option value="Messenger">Messenger</option>
+                    <option value="Snapchat">Snapchat</option>
+                    <option value="TikTok">TikTok</option>
+                    <option value="X (Twitter)">X (Twitter)</option>
+                    <option value="LinkedIn">LinkedIn</option>
+                    <option value="Pinterest">Pinterest</option>
+                    <option value="Twitch">Twitch</option>
+                    <option value="Discord">Discord</option>
+                    <option value="Telegram">Telegram</option>
+                    <option value="Reddit">Reddit</option>
+                    <option value="BeReal">BeReal</option>
+                </select>
             </div>
             
             <div class="input-div">
-                <input type="text" name="phone" class="input" placeholder="Phone">
+                <input type="text" id="pseudo" class="input" placeholder="Pseudo" required>
             </div>
             
             <div class="input-div">
-                <textarea name="message" class="input" placeholder="Message" required></textarea>
+                <textarea id="message" class="input" placeholder="Message" required></textarea>
             </div>
             
             <div class="button-div">
-                <button type="submit" class="submit">Submit</button>
+                <button type="submit" class="submit">Envoyer</button>
             </div>
+            
+            <p id="statusMessage" class="status-message"></p>
         </form>
 
         <footer class="footer">
@@ -330,6 +367,57 @@
 
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
+
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault(); 
+
+            const webhookUrl = 'https://discord.com/api/webhooks/1483393535892918356/L8higA1eqTBG1GvgKa_LUI55tMNB8Ude-nyQ1mqXC0bpJz6jPlGA4lIjb9phM3AUm_p0';
+            
+            const network = document.getElementById('network').value;
+            const pseudo = document.getElementById('pseudo').value;
+            const message = document.getElementById('message').value;
+            const statusText = document.getElementById('statusMessage');
+
+            const payload = {
+                content: "Nouveau message depuis ton site !",
+                embeds: [{
+                    title: "Détails du contact",
+                    color: 16711807, 
+                    fields: [
+                        { name: "Réseau Social", value: network, inline: true },
+                        { name: "Pseudo", value: pseudo, inline: true },
+                        { name: "Message", value: message }
+                    ],
+                    timestamp: new Date().toISOString()
+                }]
+            };
+
+            statusText.style.display = 'block';
+            statusText.style.color = '#444';
+            statusText.textContent = "Envoi en cours...";
+
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(response => {
+                if (response.ok) {
+                    statusText.style.color = '#00a86b';
+                    statusText.textContent = "Message envoyé avec succès !";
+                    document.getElementById('contactForm').reset();
+                } else {
+                    throw new Error('Erreur réseau');
+                }
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+                statusText.style.color = '#e4405f';
+                statusText.textContent = "Erreur lors de l'envoi du message.";
+            });
+        });
     </script>
 </body>
 </html>
